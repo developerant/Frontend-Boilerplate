@@ -1,20 +1,20 @@
 // Normalize
 @import 'base/normalize';
 
-// Foundations
-@import "base/icons";
-
 // Settings and mixins
 @import 'settings/font-face';
 @import 'settings/fonts';
 @import 'settings/colours';
-@import 'settings/variables';
 @import 'settings/breakpoints';
 
 @import 'tools/rems';
-@import 'tools/media-queries'; // Stylistic mixins (buttons, arrows etc)
+@import 'tools/media-queries';
 
-@import 'patterns'; // Sass mixins for breakpoints as well as clearfix and hide-text mixins
+@import 'patterns';
+
+// Site Foundations
+@import "base/base";
+@import "base/icons";
 
 // Grid - CSS Wizardry grids
 // @import "tools/grid"; // Use if required
