@@ -30,8 +30,6 @@ scss-lint-report.xml
 # Testing
 /report
 
-# Bower
-/public/components
-
 # WordPress
+/public/wp-config.php
 /public/wp-content/uploads
