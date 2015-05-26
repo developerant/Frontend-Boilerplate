@@ -160,7 +160,7 @@ gulp.task('scripts', function(){
 gulp.task('vendorScripts',function(){
 	return gulp.src(paths.js.vendor)
 	.pipe($.uglify())
-	.pipe(gulp.dest(basePaths.dest + '_js'))
+	.pipe(gulp.dest(basePaths.dest + '_js/vendor'))
 	.pipe($.size({title: 'Vendor Scripts'}));
 });
 
