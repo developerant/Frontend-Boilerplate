@@ -22,6 +22,8 @@ scss-lint-report.xml
 
 # Hide generated files
 /public/_*
+/public/*.css
+!/public/_img # This is not ignored.
 /public/var/*
 /public/packages/*
 
