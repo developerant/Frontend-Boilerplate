@@ -5,7 +5,7 @@ CORE_JS = (function ($) {
 	var variableName = '',
 
 		init = function () {
-			// runs straigh away
+			// runs straight away
 			$("html").removeClass("no-js").addClass("has-js");
 
 			// runs like jQuery normally would when everything is ready
