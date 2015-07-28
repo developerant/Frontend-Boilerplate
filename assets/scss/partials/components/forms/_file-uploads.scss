@@ -1,0 +1,17 @@
+
+label.custom-file-upload {
+	width: auto;
+
+	input[type="file"] {
+		position: fixed;
+		top: 0;
+		left: -100%;
+	}
+}
+
+// Usage:
+//
+// <label class="custom-file-upload">
+// 	Upload
+// 	<input type="file">
+// </label>

@@ -1,0 +1,74 @@
+//     _____ _______       _____ _______
+//    / ____|__   __|/\   |  __ \__   __|
+//   | (___    | |  /  \  | |__) | | |
+//    \___ \   | | / /\ \ |  _  /  | |
+//    ____) |  | |/ ____ \| | \ \  | |
+//   |_____/   |_/_/    \_\_|  \_\ |_|
+//
+//
+
+// In this manifest file you should write your main styles. (or centralize your imports)
+// Import this file using the following HTML or equivalent:
+// <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+// =============================================================================
+// Settings
+// =============================================================================
+
+@import "settings/paths";
+@import "settings/breakpoints";
+@import "settings/colours";
+@import "settings/fonts";
+@import "settings/spacing";
+
+// =============================================================================
+// Tools
+// =============================================================================
+
+@import "tools/element-mixins";
+@import "tools/helpers";
+@import "tools/transitions";
+
+// =============================================================================
+// Patterns
+// =============================================================================
+
+@import "patterns/arrows";
+@import "patterns/unselectable";
+
+// MadeByMany patterns
+@import "patterns/unbulleted_list";
+@import "patterns/unstyled_list";
+@import "patterns/clearfix";
+@import "patterns/clearfix_with_overflow";
+@import "patterns/expand_click_area";
+@import "patterns/float_list";
+@import "patterns/fluid_media_wrapper";
+@import "patterns/image_replacement";
+@import "patterns/inline_list";
+@import "patterns/media_box";
+@import "patterns/responsive_image";
+@import "patterns/unstyled_anchor";
+@import "patterns/unstyled_input";
+@import "patterns/vertical_align";
+@import "patterns/visually_hidden";
+
+// =============================================================================
+// Partials - Site specific files go here
+// =============================================================================
+
+// base - base styles, import fonts/icon-fonts, layout (apply grids to the site classes)
+@import "partials/base/normalize";
+@import "partials/base/icons";
+@import "partials/base/typography";
+@import "partials/base/layout";
+
+// components - buttons, tables, forms
+@import "partials/components/buttons";
+
+// global - header, footer, and other common areas
+@import "partials/sections/header";
+@import "partials/sections/nav";
+@import "partials/sections/footer";
+
+// page specifics

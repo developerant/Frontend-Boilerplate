@@ -1,0 +1,17 @@
+
+// =============================================================================
+// Base Styles
+// =============================================================================
+
+// sort general image space issues
+img {
+	display: block;
+}
+
+// Box sizing reset
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}

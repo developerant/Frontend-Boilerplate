@@ -1,0 +1,45 @@
+
+label.custom-select {
+	display: block;
+	position:relative;
+	width: 100%;
+	padding: 0;
+	overflow: hidden;
+
+	&:before{
+		content:'<>';
+        -webkit-transform:rotate(90deg);
+        -moz-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        transform:rotate(90deg);
+        right:8px;
+        top:7px;
+        position:absolute;
+        pointer-events:none;
+	}
+
+	select {
+		display:block;
+		position: relative; // make sure it appears on top of :before
+		width: 110%;
+		max-width: 110%;
+		min-width: 100%;
+		margin:0;
+		border:0;
+		outline: none;
+		-webkit-appearance:none;
+		-moz-appearance:none;
+		appearance:none;
+		background-color: transparent;
+		cursor: pointer;
+	}
+}
+
+// Usage:
+//
+// <label>Standard Label</label>
+// <label class="custom-select">
+// 	<select>
+// 		<option>Mr</option>
+// 	</select>
+// </label>

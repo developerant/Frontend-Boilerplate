@@ -1,0 +1,14 @@
+
+// =============================================================================
+// Spacing - for margin and padding consistency
+// =============================================================================
+
+$spacing: 20px;
+$spacing-double: $spacing * 2;
+$spacing-half: $spacing / 2;
+$spacing-quarter: $spacing / 4;
+
+$gutter: $spacing-half;
+
+// For a common border radius
+$radius: 3px;

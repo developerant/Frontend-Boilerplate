@@ -1,0 +1,20 @@
+//    _____   ______               __
+//   |_   _| |  ____|    _        / /
+//     | |   | |__      (_)______| |
+//     | |   |  __|       |______| |
+//    _| |_ _| |____ _   _       | |
+//   |_____(_)______(_) (_)      | |
+//                                \_\
+//
+
+// Use this file to write IE specific override styles.
+// Import this file using the following HTML or equivalent:
+// <!--[if IE]>
+// <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+// <![endif]--> */
+
+// Set up defaults and max size of page, then import style.scss
+
+$old-ie:true;
+$fix-mqs:60em; // 960px
+@import 'style';

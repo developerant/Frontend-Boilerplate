@@ -1,0 +1,66 @@
+// =============================================================================
+//  Elemental Mixins
+// =============================================================================
+
+// =============================================================================
+//  Buttons
+// =============================================================================
+
+@mixin button($grad-start, $grad-end) {
+	display:inline-block;
+	padding:8px 20px;
+	color:$text-white;
+	line-height:1;
+	text-align:center;
+	text-shadow:2px 1px 3px rgba(0,0,0,0.7);
+	@include background-image(linear-gradient($grad-start, $grad-end));
+	border:1px solid lighten($grad-start, 30%);
+	@include border-radius(4px);
+
+	&:hover {
+		// Need some sort of hover style?!
+		color:#fff;
+	}
+
+	&:active {
+		position:relative;
+		top:1px;
+		@include background-image(linear-gradient($grad-end, $grad-start));
+	}
+}
+
+// =============================================================================
+//  Responsive Spacing
+// =============================================================================
+
+
+@mixin responsive($property: margin-bottom, $space: $spacing, $ratio: 2 ) {
+	#{$property}: $space / $ratio;
+
+	@include breakpoint(medium) {
+		#{$property}: $space;
+	}
+}
+
+// =============================================================================
+//  Opacity
+// =============================================================================
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// =============================================================================
+//  Horizontal Rule / Thematic Break - Cross browser solution
+// =============================================================================
+
+@mixin hr($color, $size: 1px) {
+	margin-top: 0;
+	border: none 0;
+	border-bottom: solid $size $color;
+	color: $color;
+	background-color: $color;
+	clear: both;
+}
