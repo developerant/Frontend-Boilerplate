@@ -5,14 +5,14 @@
  */
 
 @mixin clearfix($extend: true) {
-  @if $extend {
-    @extend %clearfix;
-  }
-  @else {
-    overflow: hidden;
-  }
+	@if $extend {
+		@extend %clearfix;
+	}
+	@else {
+		overflow: hidden;
+	}
 }
 
 %clearfix {
-  @include clearfix($extend: false);
+	@include clearfix($extend: false);
 }

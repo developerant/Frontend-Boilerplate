@@ -10,6 +10,7 @@ composer.lock
 # Sass
 .sass-cache
 node_modules
+scss-lint-report.xml
 
 # Node
 /node_modules
@@ -21,6 +22,8 @@ node_modules
 
 # Hide generated files
 /public/_*
+/public/*.css
+!/public/_img # This is not ignored.
 /public/var/*
 /public/packages/*
 
