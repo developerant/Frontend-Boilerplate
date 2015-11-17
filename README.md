@@ -30,7 +30,7 @@ You're then free to use your icons like this:
 
 ```
 <svg class="icon">
-	<use xlink:href="#twitter"></use>
+	<use xlink:href="#cross"></use>
 </svg>
 ```
 
