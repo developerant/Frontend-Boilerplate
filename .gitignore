@@ -33,3 +33,6 @@ scss-lint-report.xml
 # WordPress
 /public/wp-config.php
 /public/wp-content/uploads
+
+# Bower
+assets/bower-packages/*
