@@ -24,7 +24,7 @@ Primary Tasks:
 
 The default `gulp` task includes the `svgstore`, `inject` and `svgfallback` tasks. Together, they will create an SVG icon system that will work in IE8 and up.
 
-SVG files added to `assets/img/svg` will be optimised and added to an `svg.svg` file found in `_img/svg`. The content of this file (a symbols block of svgs) is then auto-injected into your document just after the opening `<body>` tag.
+SVG files added to `assets/img/svg` will be optimised and added to a `svg.svg` file found in `public/_img/svg`. The content of this file (a block of svg symbols) is then auto-injected into your document just after the opening `<body>` tag.
 
 You're then free to use your icons like this:
 
@@ -34,9 +34,9 @@ You're then free to use your icons like this:
 </svg>
 ```
 
-They can then be styled with all the CSS you desire. Each individual svg is also piped through to the public file. This enables you to use the svg via the `use` method above (highly recommended) or via all the other ways of displaying svgs on the web (see the links below).
+They can then be styled with all the CSS you desire. Each individual svg is also piped through to the `public` folder. This enables you to use each svg via the `use` method above (highly recommended) or via all the other ways of displaying svgs on the web (see the links below).
 
-NB: Browser support is solid and this system will work in IE9 and up. A few adjustments need to be made for IE8 - you'll find an auto-generated sprite in `_img/png/sprite` along with a css file that can be used in conjunction with background images and the Modernizr fallback found in `svg-ie8.scss`.
+NB: Browser support is solid and this system will work in IE9 and up. A few adjustments need to be made for IE8 - having run `gulp` you'll find an auto-generated sprite in `public_img/png/sprite` along with a css file that can be used in conjunction with background images and the Modernizr fallback example found in `svg-ie8.scss`.
 
 Further reading:
 
