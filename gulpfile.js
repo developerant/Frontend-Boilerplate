@@ -1,318 +1,163 @@
 /**
- * GULPFILE - By @wearearchitect
+ * GULPFILE - By Architect
  */
 
-/*-----------------------------------------*\
-	VARIABLES
-\*-----------------------------------------*/
+var $           = require('gulp-load-plugins')(),
+    gulp        = require('gulp'),
+    gutil       = require('gulp-util'),
+    del         = require('del'),
+    argv        = require('yargs').argv,
+    runSequence = require('run-sequence')
 
-// Dependencies
-var $ = require('gulp-load-plugins')(),
-	gulp = require('gulp'),
-	del = require('del'),
-	fs = require('fs'),
-	lazypipe = require('lazypipe'),
-	argv = require('yargs').argv,
-	runSequence = require('run-sequence'),
-	browserSync = require('browser-sync'),
-	reload = browserSync.reload,
+    // Environments
+    production = !!(argv.production), // true if --production flag is used
 
-	// Environments
-	production = !!(argv.production), // true if --production flag is used
+    // Base Paths
+    basePaths = {
+        src: 'assets/',
+        dest: 'public/'
+    },
 
-	// If not production load in pngquant
-	pngquant   = ! production ? require('imagemin-pngquant') : null,
+    onError = function (error) {
+        gutil.log(gutil.colors.red('Error (' + error.plugin + '): ' + error.message));
+        this.emit('end');
+    }
 
-	// Base Paths
-	basePaths = {
-		src: 'assets/',
-		dest: 'public/'
-	},
+/*----------------------------------------------------*\
+     SASS - LIBSASS COMPILE, MINIFY, OUTPUT
+\*----------------------------------------------------*/
+gulp.task('styles', function() {
+    return gulp.src(basePaths.src + 'scss/**/*.scss')
+   .pipe($.plumber({errorHandler: onError}))
+   .pipe($.sass({
+        includePaths: ['scss']
+    }))
+    .pipe($.autoprefixer('last 4 versions') )
+    .pipe($.minifyCss())
+    .pipe(gulp.dest(basePaths.dest + '_css'))
+  });
 
-	// Assets Folder Paths
-	paths = {
-		scss: basePaths.src + 'scss/**/*.scss',
-		js: {
-			src: basePaths.src + 'js/src/**/*.js',
-			vendor: basePaths.src + 'js/vendor/*.js'
-		},
-		img: basePaths.src + 'img/**/*'
-	},
+/*----------------------------------------------------*\
+     SCRIPTS - COMPILE, MINIFY, OUTPUT
+\*----------------------------------------------------*/
+gulp.task('scripts', function() {
+    var gulpTasks = gulp.src(basePaths.src + 'js/*.js')
+        .pipe($.plumber() );
 
-	svgPaths = {
-		images: {
-			src: basePaths.src + 'img/svg',
-			dest: '_img'
-		},
-		sprite: {
-			src: basePaths.src + 'img/svg/*.svg',
-			svgSymbols: '_img/svg/icons/icons.svg',
-		}
-};
+    if ( ! production ) {
+        gulpTasks = gulpTasks.pipe($.jshint() )
+            .pipe($.jshint.reporter('default') );
+    }
 
-
-/*-----------------------------------------*\
-	ERROR NOTIFICATION
-	- Beep!
-\*-----------------------------------------*/
-
-onError = function(err) {
-	$.notify.onError({
-		title: "Gulp",
-		subtitle: "Failure!",
-		message: "Error: <%= error.message %>",
-		sound: "Beep"
-	})(err);
-	this.emit('end');
-};
-
-
-/*-----------------------------------------*\
-	BROWSER SYNC
-	- View project at test.dev:3000
-\*-----------------------------------------*/
-
-gulp.task('browser-sync', function() {
-	browserSync({
-		proxy: "test.dev",
-		notify: false
-	});
+    return gulpTasks
+        .pipe(gulp.dest(basePaths.dest + '_js'))
 });
 
-
-/*-----------------------------------------*\
-	 STYLES TASK
-	 - Catch errors via gulp-plumber
-	 - Compile Sass
-	 - Vendor prefix
-	 - Output unminified CSS for debugging
-	 - Rename
-	 - Minify
-	 - Output minified CSS
-\*-----------------------------------------*/
-
-gulp.task('styles', function () {
-	return gulp.src(paths.scss)
-		.pipe( $.plumber({errorHandler: onError}) )
-		.pipe( $.sass({ style: 'expanded', }))
-		.pipe( $.autoprefixer('last 2 version') )
-		.pipe( gulp.dest(basePaths.dest + '_css') )
-		.pipe( $.rename({ suffix: '.min' }) ) // Remove to generate style.css for WordPress
-		.pipe( $.minifyCss() )
-		.pipe( gulp.dest(basePaths.dest) )
-		.pipe( $.size({title: 'Styles'}));
+/*------------------------------------------------------*\
+     INLINE SVG - CREATES <SYMBOL> BLOCK OF SVG GOODNESS
+\*------------------------------------------------------*/
+gulp.task('svgstore', function () {
+    return gulp.src(basePaths.src + 'img/svg/*.svg')
+        .pipe($.svgmin())
+        .pipe($.svgstore())
+        .pipe(gulp.dest(basePaths.dest + '_img/svg'))
 });
 
-/*-----------------------------------------*\
-	SASS LINTING
-	- Keep your code squeaky clean
-\*-----------------------------------------*/
-
-gulp.task('lint', function() {
-	return gulp.src(paths.scss)
-	.pipe( $.plumber({errorHandler: onError}) )
-	.pipe( $.scssLint( {
-		'bundleExec': true,
-		'config': '.scss-lint.yml',
-		'reporterOutput': 'scss-lint-report.xml'
-	}));
-});
-
-
-/*-----------------------------------------*\
-	 SCRIPTS TASK
-	 - Catch errors via gulp-plumber
-	 - Hint
-	 - Concatenate assets/js into core.js
-	 - Output unminified JS for debugging
-	 - Minify
-	 - Rename
-	 - Output minified JS
-\*-----------------------------------------*/
-
-gulp.task('scripts', function(){
-	var gulpTasks = gulp.src([paths.js.src, paths.js.vendor])
-		.pipe( $.plumber({errorHandler: onError}) )
-
-	if ( ! production )
-	{
-		gulpTasks = gulpTasks.pipe( $.jshint() )
-			.pipe( $.jshint.reporter('default') );
-	}
-
-	return gulpTasks
-		.pipe( $.concat('core.js') )
-		.pipe( gulp.dest(basePaths.dest + '_js') )
-		.pipe( $.uglify() )
-		.pipe( $.rename({ suffix: '.min' }) )
-		.pipe( gulp.dest(basePaths.dest + '_js') )
-		.pipe( $.size({title: 'Scripts'}));
-});
-
-
-/*-----------------------------------------*\
-	 VENDOR SCRIPTS TASK
-	 - Leave vendor scripts intact
-	 - Minify
-	 - Output minified scripts
-\*-----------------------------------------*/
-
-gulp.task('vendorScripts',function(){
-	return gulp.src(paths.js.vendor)
-	.pipe($.uglify())
-	.pipe(gulp.dest(basePaths.dest + '_js'))
-	.pipe($.size({title: 'Vendor Scripts'}));
-});
-
-
-/*-----------------------------------------*\
-	 IMAGE OPTIMISATION TASK
-	 - Optimise only new images + SVGs
-	 - Output
-\*-----------------------------------------*/
-
-gulp.task('imgmin', function () {
-	return gulp.src(paths.img)
-		.pipe( $.cache( $.imagemin({
-				progressive: true,
-				use: [ pngquant() ]
-			})))
-		.pipe( gulp.dest(basePaths.dest + '_img'));
-});
-
-
-/*-----------------------------------------*\
-	 SVG ICONS TASKS
-	 - Config
-	 - Create Symbol Sprites
-	 - Create and add Symbol ID (id="icon-example")
-	 - Create icon library preview page
-	 - Output compiled icon library
-	 - Inject into page
-
-	 NB: Imgmin optimises all SVGs, then
-	 outputs them to the _img folder.
-	 So we have the icon library and the
-	 individual SVGs at ourt disposal.
-\*-----------------------------------------*/
-
-// SVG Symbols Task
-// Create SVG Symbols for icons.
-gulp.task('svgSymbols', function () {
-	return gulp.src(svgPaths.sprite.src)
-		.pipe(stripAttrs())
-		.pipe($.svgSprite(
-			{
-				mode        : {
-					symbol      : {
-					prefix      : ".icon-%s",
-					dimensions  : "%s",
-					sprite      : "svg/icons/icons.svg",
-					dest        : svgPaths.images.dest,
-					inline      : true,
-					"example": {
-						"dest": "svg/icons/icons-preview.html"
-						}
-					}
-			},
-				svg                     : {
-					dimensionAttributes : false
-				}
-			}
-		))
-		.pipe(gulp.dest(basePaths.dest))
-		.pipe($.size({title: 'SVG Symbols'}));
-	});
-
-// SVG Document Injection
-// Inject SVG <symbol> block just after opening <body> tag.
+// Inject SVG Block into DOM
 gulp.task('inject', function () {
-	var symbols = gulp.src(basePaths.dest + svgPaths.sprite.svgSymbols);
+    var symbols = gulp
+        .src(basePaths.dest + '_img/svg/svg.svg')
 
-	function fileContents (filePath, file) {
-		return file.contents.toString();
-	}
+    function fileContents (filePath, file) {
+            return file.contents.toString();
+    }
 
-	return gulp.src( basePaths.dest + 'index.php')
-		.pipe($.inject(symbols, { transform: fileContents }))
-		.pipe(gulp.dest( basePaths.dest ));
+    return gulp
+        .src('public/index.php')
+        .pipe($.inject(symbols, { transform: fileContents }))
+        .pipe(gulp.dest('public'));
 });
 
-// Run all SVG tasks
-gulp.task('svg', function(cb) {
-	runSequence('svgSymbols', 'inject', cb);
+// Create PNG sprite fallback for no-svg browsers, IE8 etc.
+gulp.task('svgfallback', function () {
+    return gulp
+        .src(basePaths.src + '/img/svg/*.svg', {base: basePaths.src + 'img/svg/'})
+        .pipe($.svgfallback())
+        .pipe(gulp.dest(basePaths.dest + '_img/png/sprite'))
 });
 
-
-/*-----------------------------------------*\
-	 DEV TASK
-	 - Speedy!
-\*-----------------------------------------*/
-
-gulp.task('dev', function() {
-	gulp.start('scripts', 'styles');
+/*------------------------------------------*\
+     COPY FONTS
+\*------------------------------------------*/
+gulp.task('fonts', function () {
+    return gulp.src(basePaths.src + 'fonts/*')
+        .pipe(gulp.dest(basePaths.dest + '_fonts'))
 });
 
-
-/*-----------------------------------------*\
-	 CLEAN OUTPUT DIRECTORIES
-\*-----------------------------------------*/
-
-gulp.task('clean', function(cb) {
-	if ( ! production )
-		return del([
-			basePaths.dest + '_*'
-		], { read: false }, cb)
-	else
-		return del([
-			basePaths.dest + '_*',
-			'!' + basePaths.dest + '_img'
-		], { read: false }, cb)
+/*------------------------------------------*\
+     COPY IMAGES
+\*------------------------------------------*/
+gulp.task('images', function () {
+    return gulp.src(basePaths.src + 'img/**/*')
+        .pipe(gulp.dest(basePaths.dest + '_img'))
 });
 
-/*-----------------------------------------*\
-	 CLEAR CACHE
-\*-----------------------------------------*/
-
-gulp.task('clear', function (done) {
-	return $.cache.clearAll(done);
+/*--------------------------------------------------*\
+     MODERNIZR
+     MOVE FROM ASSETS INTACT (BOWER v. NOT AVAILABLE)
+\*--------------------------------------------------*/
+gulp.task('modernizr', function () {
+    return gulp.src(basePaths.src + 'js/vendor/modernizr-custom.js')
+        .pipe(gulp.dest(basePaths.dest + '_js'))
 });
 
 /*-----------------------------------------*\
-	 MANUAL DEFAULT TASK
-	 - Does everything
-	 - Tasks in array run in parralel
+    BOWER/VENDOR SCRIPTS
 \*-----------------------------------------*/
+gulp.task('vendorScripts', function() {
+    var bower = [
+        basePaths.dest + '_bower-packages/jquery/dist/jquery.min.js',
+    ]
+    return gulp.src(bower)
+        .pipe($.concat('vendor.js'))
+        .pipe($.uglify() )
+        .pipe(gulp.dest(basePaths.dest + '_js'))
+});
+
+gulp.task('bower', function() {
+    return $.bower()
+        .pipe(gulp.dest(basePaths.dest + '_bower-packages'))
+ });
+
+/*-----------------------------------------*\
+     CLEAN OUTPUT DIRECTORIES
+\*-----------------------------------------*/
+gulp.task('clean', function() {
+    del(['public/_css',
+         'public/_js',
+         'public/_img/',
+         '!public/_img/png*',
+         'public/_fonts',
+         'public/_bower-packages'],
+         { read: false })
+});
+
+/*---------------------------------------------*\
+     WATCHING...
+\*---------------------------------------------*/
+gulp.task('watch', function() {
+    gulp.watch('assets/scss/**/*.scss', ['styles']);
+    gulp.watch('assets/js/*.js', ['scripts']);
+    gulp.watch('assets/img/*', ['images']);
+});
+
+/*---------------------------------------------*\
+     DEFAULT TASK
+\*---------------------------------------------*/
 
 gulp.task('default', ['clean'], function(cb) {
-	if ( ! production )
-		runSequence('imgmin', ['styles', 'scripts', 'vendorScripts'], 'svg', cb);
-	else
-		runSequence(['styles', 'scripts', 'vendorScripts'], cb);
+  if ( ! production )
+    runSequence( 'bower', 'styles', 'vendorScripts', 'scripts', 'modernizr', 'images', 'fonts', ['svgstore'], 'inject', 'svgfallback', cb);
+  else
+    runSequence( 'bower', 'styles', 'vendorScripts', 'scripts', 'modernizr', 'images', 'fonts', ['svgstore'], 'inject', cb);
 });
-
-/*-----------------------------------------*\
-	 WATCH
-	 - Watch assets & public folder
-	 - Auto-reload browsers
-\*-----------------------------------------*/
-
-gulp.task('watch', ['browser-sync'], function() {
-	gulp.watch(paths.scss, ['styles', reload]);
-	gulp.watch(paths.js.src, ['scripts', reload]);
-	gulp.watch([basePaths.dest + '*.html', basePaths.dest + '*.php'], reload);
-});
-
-/*-----------------------------------------*\
-	 CUSTOM PIPES
-	 - Any pipes used more than once
-\*-----------------------------------------*/
-
-// Strips attributes from SVGs
-var stripAttrs = lazypipe()
-	.pipe( $.cheerio, {
-		run: function ($) {
-			$('[fill]').removeAttr('fill');
-		},
-		parserOptions: { xmlMode: true }
-	});
