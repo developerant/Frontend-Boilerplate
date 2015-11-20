@@ -39,9 +39,10 @@ gulp.task('styles', function() {
 
 /*----------------------------------------------------*\
      SCRIPTS - COMPILE, MINIFY, OUTPUT
+     Generates both minified and unminifed versions
 \*----------------------------------------------------*/
 gulp.task('scripts', function() {
-    var gulpTasks = gulp.src(basePaths.src + 'js/*.js')
+    var gulpTasks = gulp.src(basePaths.src + 'js/src/*.js')
         .pipe($.plumber() );
 
     if ( ! production ) {
@@ -50,6 +51,10 @@ gulp.task('scripts', function() {
     }
 
     return gulpTasks
+        .pipe( $.concat('scripts.js') )
+        .pipe( gulp.dest(basePaths.dest + '_js') )
+        .pipe( $.uglify() )
+        .pipe( $.rename({ suffix: '.min' }) )
         .pipe(gulp.dest(basePaths.dest + '_js'))
 });
 
@@ -133,12 +138,13 @@ gulp.task('bower', function() {
      CLEAN OUTPUT DIRECTORIES
 \*-----------------------------------------*/
 gulp.task('clean', function() {
-    del(['public/_css',
+    del(['public/_bower-packages',
+         'public/_css',
          'public/_js',
          'public/_img/',
          '!public/_img/png*',
          'public/_fonts',
-         'public/_bower-packages'],
+         ],
          { read: false })
 });
 
