@@ -8,63 +8,35 @@ A starting point for Architect front-end projects.
 - Download and unzip into project directory
 `wget https://github.com/wearearchitect/Frontend-Boilerplate/archive/master.zip`
 - run `npm install`
-- run `bundle install`
+- run `bundle`
 - Away you go…
 
 ## Gulp
 
-The standard build tool we’re now using is Gulp with the following plugins:
+The standard build tool we’re now using is Gulp. In the `gulpfile`, plugins are loaded with `gulp-load-plugins` so should be used with the `$.` prefix.
 
-- gulp-autoprefixer
-- gulp-cheerio
-- gulp-concat
-- gulp-if
-- gulp-inject
-- gulp-load-plugins
-- gulp-minify-css
-- gulp-plumber
-- gulp-rename
-- gulp-ruby-sass
-- gulp-size
-- gulp-svg-sprite
-- gulp-uglify
+Primary Tasks:
 
-Additional plugins on dev:
-
-- browser-sync
-- gulp-cache
-- gulp-imagemin
-- gulp-notify
-- gulp-scss-lint
-- gulp-jshint
-
-In the `gulpfile`, plugins are loaded with `gulp-load-plugins` so should be used with the `$.` prefix.
-
-Tasks:
-
-- `gulp dev` - task to run during development
-- `gulp lint` - task to lint Sass code (should be run often - code should pass lint tests before a PR is accepted)
 - `gulp` - runs all tasks (use in dev)
 - `gulp --production` - runs all production tasks (i.e excludes `devDependencies` )
 
-
 ### The SVG Icon System
 
-Run the `gulp svg` task to create your SVG icon block.
+The default `gulp` task includes the `svgstore`, `inject` and `svgfallback` tasks. Together, they will create an SVG icon system that will work in IE8 and up.
 
-SVG files added to `assets/img/svg` will be optimised and added to an `icons.svg` file (this is also created by the `gulp svg` task). Having run the task, you'll also now find a handy Icons Preview - a generated HTML page that allows you to see your freshly compressed SVGs alongside the SVG syntax needed to display the icons on your site (see below). Each icon's class will be `icon-` + filename.
+SVG files added to `assets/img/svg` will be optimised and added to a `svg.svg` file found in `public/_img/svg`. The content of this file (a block of svg symbols) is then auto-injected into your document just after the opening `<body>` tag.
 
-The task also injects the symbols block into the head of your document inbetween the `<!-- inject:svg -->` and `<!-- endinject -->` (this should always be placed after the opening `<body>` tag more than likely in your `header.php`). You're then free to use your icons like this:
+You're then free to use your icons like this:
 
 ```
-<svg class="icon-twitter">
-	<use xlink:href="#twitter"></use>
+<svg class="icon">
+	<use xlink:href="#cross"></use>
 </svg>
 ```
 
-They can then be styled with all the CSS you desire.
+They can then be styled with all the CSS you desire. Each individual svg is also piped through to the `public` folder. This enables you to use each svg via the `use` method above (highly recommended) or via all the other ways of displaying svgs on the web (see the links below).
 
-NB: Browser support is solid and this system will work in IE9 and up. Critical icons needed to display in IE8 can be intiated with the [SVG For Everybody](https://github.com/jonathantneal/svg4everybody) polyfill.
+NB: Browser support is solid and this system will work in IE9 and up. A few adjustments need to be made for IE8 - having run `gulp` you'll find an auto-generated sprite in `public_img/png/sprite` along with a css file that can be used in conjunction with background images and the Modernizr fallback example found in `svg-ie8.scss`.
 
 Further reading:
 
@@ -73,8 +45,6 @@ Further reading:
 - [SVG vs. Icon Fonts](https://css-tricks.com/icon-fonts-vs-svg/)
 - [An Overview of SVG Sprite Creation Techniques](http://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/)
 - [Ten Reasons We Switched From An Icon Font to SVG](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/)
-- [Gulp SVG Sprite](https://github.com/jkphl/gulp-svg-sprite)
-
 
 ## Structure
 

@@ -1,22 +1,14 @@
 
 // =============================================================================
-// Colours
+// Colour Variables
 // =============================================================================
 
-$text:#181818;
-$text-white:#FFF;
-$header-green:#0D8F52;
-$footer-text:#8C8C8C;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #ddd;
 
-$borders:#BEBEBE;
-
-$green:#119356;
-$blue:#4AA9E0;
-$magenta:#EC154F;
-$red:#D21044;
-$orange:#EB5D19;
-$darkblue:#01315B;
-
+$base-background-color: #fff;
+$base-font-color: $dark-gray;
 
 // =============================================================================
 // Recommended Usage
@@ -45,5 +37,3 @@ $darkblue:#01315B;
   @warn "Unknown `#{$key}` in $colors.";
   @return null;
 }
-
-
