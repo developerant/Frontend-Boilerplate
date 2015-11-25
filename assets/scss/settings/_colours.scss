@@ -27,13 +27,3 @@ $base-font-color: $dark-gray;
 // $clr2-dark1: #FFF;
 // $clr2-dark2: #FFF;
 // $clr2-dark3: #FFF;
-
-
-@function color($key) {
-  @if map-has-key($colors, $key) {
-    @return map-get($colors, $key);
-  }
-
-  @warn "Unknown `#{$key}` in $colors.";
-  @return null;
-}
