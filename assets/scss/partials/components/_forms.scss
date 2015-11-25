@@ -6,3 +6,9 @@
 @import "forms/checkboxes";
 @import "forms/file-uploads";
 @import "forms/selects";
+
+$text-inputs: 'input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea';
+
+#{$text-inputs} {
+
+}
