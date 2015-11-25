@@ -1,0 +1,22 @@
+
+// =============================================================================
+//  Fading sonar border effect - ideal for clicks
+// =============================================================================
+
+@mixin circle-sonar-animation( $speed ) {
+    @include circle-transition();
+    transition: transform ease-out $speed, background $speed;
+    transform: scale(0.93);
+    color: #fff;
+
+    &:after {
+        top: 0;
+        left: 0;
+        padding: 0;
+        z-index: -1;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        transform: scale(0.9);
+        animation: sonarEffect $speed ease-out;
+    }
+}
