@@ -13,62 +13,51 @@
 
 // =============================================================================
 // Settings
+// - Nothing from settings should be output directly to the css
 // =============================================================================
 
-@import "settings/paths";
-@import "settings/breakpoints";
-@import "settings/colours";
-@import "settings/fonts";
-@import "settings/spacing";
+@import 'settings/paths';
+@import 'settings/breakpoints';
+@import 'settings/colours';
+@import 'settings/font-face';
+@import 'settings/fonts';
+@import 'settings/spacing';
 
 // =============================================================================
 // Tools
 // =============================================================================
 
-@import "tools/element-mixins";
-@import "tools/helpers";
-@import "tools/transitions";
+@import 'tools/rems';
+@import 'tools/media-queries';
+@import 'tools/svg-ie8';
+@import 'tools/transitions';
+@import 'tools/animations';
 
 // =============================================================================
 // Patterns
 // =============================================================================
 
-@import "patterns/arrows";
-@import "patterns/unselectable";
-
-// MadeByMany patterns
-@import "patterns/unbulleted_list";
-@import "patterns/unstyled_list";
-@import "patterns/clearfix";
-@import "patterns/clearfix_with_overflow";
-@import "patterns/expand_click_area";
-@import "patterns/float_list";
-@import "patterns/fluid_media_wrapper";
-@import "patterns/image_replacement";
-@import "patterns/inline_list";
-@import "patterns/media_box";
-@import "patterns/responsive_image";
-@import "patterns/unstyled_anchor";
-@import "patterns/unstyled_input";
-@import "patterns/vertical_align";
-@import "patterns/visually_hidden";
+@import 'patterns';
 
 // =============================================================================
 // Partials - Site specific files go here
 // =============================================================================
 
 // base - base styles, import fonts/icon-fonts, layout (apply grids to the site classes)
-@import "partials/base/normalize";
-@import "partials/base/icons";
-@import "partials/base/typography";
-@import "partials/base/layout";
+@import 'partials/base/normalize';
+@import 'partials/base/icons';
+@import 'partials/base/typography';
+@import 'partials/base/layout';
 
 // components - buttons, tables, forms
-@import "partials/components/buttons";
+@import 'partials/components/buttons';
+@import 'partials/components/forms';
+@import 'partials/components/tables';
 
 // global - header, footer, and other common areas
-@import "partials/sections/header";
-@import "partials/sections/nav";
-@import "partials/sections/footer";
+@import 'partials/sections/header';
+@import 'partials/sections/nav';
+@import 'partials/sections/footer';
 
-// page specifics
+// Page specifics - for campaign / standalone design pages
+//@import 'partials/pages/*';
