@@ -1,9 +1,9 @@
 // =============================================================================
-// Arrow Creator mixin
+//  Arrow generator mixin
 //
-// @param {String} $direction (down) - sets the direction the arrow points
-// @param {String} $color (#FFF) - sets the colour of the arrow
-// @param {String} $size (5px) - sets the size of the arrow
+//  @param {String} $direction (down) - sets the direction the arrow points
+//  @param {String} $color (#FFF) - sets the colour of the arrow
+//  @param {String} $size (5px) - sets the size of the arrow
 // =============================================================================
 
 @mixin arrow($direction: 'down', $color: #FFF, $size: 5px) {

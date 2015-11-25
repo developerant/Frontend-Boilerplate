@@ -1,0 +1,12 @@
+
+// =============================================================================
+//  Responsive Spacing - by github.com/developerant ;-) x
+// =============================================================================
+
+@mixin responsive($property: margin-bottom, $space: $spacing, $ratio: 2 ) {
+    #{$property}: $space / $ratio;
+
+    @include breakpoint(medium) {
+        #{$property}: $space;
+    }
+}

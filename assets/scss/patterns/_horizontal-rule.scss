@@ -1,0 +1,13 @@
+
+// =============================================================================
+//  Horizontal Rule / Thematic Break - Cross browser solution
+// =============================================================================
+
+@mixin hr($color, $size: 1px) {
+    margin-top: 0;
+    border: none 0;
+    border-bottom: solid $size $color;
+    color: $color;
+    background-color: $color;
+    clear: both;
+}
