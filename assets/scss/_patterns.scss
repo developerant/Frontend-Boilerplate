@@ -1,8 +1,33 @@
-@import 'patterns/arrows';
+
+// =============================================================================
+//  MANIFEST for /patterns
+// =============================================================================
+
+// Our Patterns
+@import 'patterns/arrow';
 @import 'patterns/buttons';
-@import 'patterns/clearfix';
-@import 'patterns/fancy-underline';
+@import 'patterns/center';
+@import 'patterns/centered_image_container';
 @import 'patterns/has-feature';
 @import 'patterns/hide-text';
-@import 'patterns/shimmer';
-@import 'patterns/vertical-align';
+@import 'patterns/horizontal-rule';
+@import 'patterns/lightbox-modal';
+@import 'patterns/responsive-spacing';
+@import 'patterns/unselectable';
+
+// MadeByMany patterns
+// https://github.com/madebymany/css-patterns
+@import 'patterns/unbulleted_list';
+@import 'patterns/unstyled_list';
+@import 'patterns/clearfix';
+@import 'patterns/clearfix_with_overflow';
+@import 'patterns/expand_click_area';
+@import 'patterns/float_list';
+@import 'patterns/fluid_media_wrapper';
+@import 'patterns/inline_list';
+@import 'patterns/media_box';
+@import 'patterns/responsive_image';
+@import 'patterns/unstyled_anchor';
+@import 'patterns/unstyled_input';
+@import 'patterns/vertical_align';
+@import 'patterns/visually_hidden';
