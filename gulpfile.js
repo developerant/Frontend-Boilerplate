@@ -44,8 +44,6 @@ gulp.task('styles', function() {
 
 });
 
-
-
 /*----------------------------------------------------*\
      SCRIPTS - COMPILE, MINIFY, OUTPUT
      Generates both minified and unminifed versions
