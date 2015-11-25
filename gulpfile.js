@@ -27,15 +27,24 @@ var $           = require('gulp-load-plugins')(),
      SASS - LIBSASS COMPILE, MINIFY, OUTPUT
 \*----------------------------------------------------*/
 gulp.task('styles', function() {
-    return gulp.src(basePaths.src + 'scss/**/*.scss')
-   .pipe($.plumber({errorHandler: onError}))
-   .pipe($.sass({
-        includePaths: ['scss']
+
+    gulp.src(basePaths.src + 'scss/**/*.scss')
+    .pipe($.sass({
+      errLogToConsole: true,
+      includePaths: ['scss']
     }))
-    .pipe($.autoprefixer('last 4 versions') )
-    .pipe($.minifyCss())
+    .pipe($.plumber())
+    .pipe($.autoprefixer({
+        browsers: ['last 4 versions']
+    }))
     .pipe(gulp.dest(basePaths.dest + '_css'))
-  });
+    .pipe($.minifyCss({ keepSpecialComments: 0 }))
+    .pipe($.rename({ extname: '.min.css' }))
+    .pipe(gulp.dest(basePaths.dest + '_css'));
+
+});
+
+
 
 /*----------------------------------------------------*\
      SCRIPTS - COMPILE, MINIFY, OUTPUT
