@@ -1,21 +1,23 @@
 
-/*
-%max-width {
-	@include breakpoint(large) {
-		max-width: 960px
-	}
-	@include breakpoint(xlarge) {
-		max-width: 1200px;
-	}
-}
-%container {
-	clear: both;
-	width: 100%;
-	margin: 0 auto;
-	@extend %max-width;
-}
+// =============================================================================
+// Layout
+// =============================================================================
 
-.global-header, .global-nav, .global-footer, .global-content {
-	@extend %container;
-}
-*/
+// %max-width {
+// 	@include breakpoint(large) {
+// 		max-width: 960px
+// 	}
+// 	@include breakpoint(xlarge) {
+// 		max-width: 1200px;
+// 	}
+// }
+// %container {
+// 	clear: both;
+// 	width: 100%;
+// 	margin: 0 auto;
+// 	@extend %max-width;
+// }
+
+// .global-header, .global-nav, .global-footer, .global-content {
+// 	@extend %container;
+// }

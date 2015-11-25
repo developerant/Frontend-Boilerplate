@@ -3,16 +3,49 @@
 // Icons
 // =============================================================================
 
-@font-face {
-	font-family: 'icons';
-	src:url('../fonts/icomoon.otf');
-	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/icomoon.ttf') format('truetype'),
-		url('../fonts/icomoon.woff') format('woff'),
-		url('../fonts/icomoon.svg#font-icons') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
+// =============================================================================
+//  SVG's
+// =============================================================================
+
+// <a href="/" class="button">
+// <svg class="icon-twitter">
+// 	<use xlink:href="#twitter"></use>
+// </svg>
+// </a>
+
+// Example styling
+
+// [class^="icon-"] {
+//   width:32px;
+//   height:32px;
+//   fill:#444;
+// }
+
+// .button {
+// 	display:inline-block;
+// 	svg {
+// 		transition: fill 0.2s ease-in;
+// 		&:hover  {
+// 			fill: #FFC627;
+// 		}
+// 	}
+// }
+
+
+// =============================================================================
+//  Icon fonts
+// =============================================================================
+
+// @font-face {
+// 	font-family: 'icons';
+// 	src:url('../fonts/icomoon.otf');
+// 	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+// 		url('../fonts/icomoon.ttf') format('truetype'),
+// 		url('../fonts/icomoon.woff') format('woff'),
+// 		url('../fonts/icomoon.svg#font-icons') format('svg');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
 
 // For use in both elements and pseudo elements
 %icon-properties {
@@ -34,17 +67,21 @@
 }
 
 // For use in pseudo elements :after and :before
-@mixin icon-font($type, $size: 26px) {
+@mixin icon-font($type, $size: $font-xl, $lineheight: true, $rem: true) {
 	@extend %icon-properties;
 	display: inline-block;
 	min-height: $size;
 	@include rem('font-size', $size);
 	line-height: $size;
+
+	@if $lineheight { line-height: 1; }
+	@if $rem { @include rem('font-size', $size); } @else { font-size: $size; }
+
 	@if $type == "plus"			{ content: 'a'; }
 	@if $type == "minus"		{ content: 'b'; }
 	@if $type == "facebook"		{ content: 'c'; }
 }
 
-[class*="icon-"], [class^="social-icons-"], [class*=" social-icons-"] {
+[class*="icon-"], [class^="icon-"] {
 	@extend %icon-properties;
 }

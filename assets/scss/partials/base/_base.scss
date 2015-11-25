@@ -1,7 +1,12 @@
 
 // =============================================================================
-// Base Styles
+// Base styles
 // =============================================================================
+
+body {
+    background: $base-background-color;
+    color: $base-font-color;
+}
 
 // sort general image space issues
 img {
@@ -12,6 +17,7 @@ img {
 html {
 	box-sizing: border-box;
 }
+
 *, *:before, *:after {
 	box-sizing: inherit;
 }
