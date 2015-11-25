@@ -1,12 +1,10 @@
-
 // =============================================================================
 //  Image of unknown dimensions centered/stretched in a container of fixed size
-//  - by github.com/developerant ;-) x
 //
+//  @author github.com/developerant ;-) x
 //  @param {px} $width
 //  @param {px} $height ($width)
 // =============================================================================
-
 
 @mixin centered-image-container($width, $height: $width) {
     display: block;

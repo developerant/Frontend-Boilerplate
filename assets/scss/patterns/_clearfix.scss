@@ -1,8 +1,8 @@
-/**
- * Standard clearfix.
- *
- * @param {Bool} $extend (true) - extend or include this pattern
- */
+// =============================================================================
+//  Standard clearfix with now overflow
+//
+//  @param {Bool} $extend (true) - extend or include this pattern
+// =============================================================================
 
 @mixin clearfix($extend: true) {
 	@if $extend {

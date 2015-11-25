@@ -1,6 +1,8 @@
-//-------------------------------------------------------------------------\\
-// CENTER VERTICALLY (AND/OR HORIZONTALLY) AN ABSOLUTELY POSTIIONED ELEMENT
-//-------------------------------------------------------------------------\\
+// =============================================================================
+//  Center vertically and/or horizontally an absolutely positioned element
+//
+//  @param {xy} $xy
+// =============================================================================
 
 @mixin center($xy:xy) {
 
@@ -18,12 +20,14 @@
 			right: auto;
 			transform: translate(-50%, -50%);
 		}
+
 		@else if $xy == x {
 			position:absolute;
 			left: 50%;
 			right: auto;
 			transform: translateX(-50%);
 		}
+
 		@else if $xy == y {
 			position:absolute;
 			top: 50%;

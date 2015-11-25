@@ -1,43 +1,42 @@
-
 // =============================================================================
 //  Fading Leaving border activation - ideal for clicks
 // =============================================================================
 
 @mixin circle-transition() {
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 50%;
-    text-align: center;
-    //position: relative;
-    z-index: 1;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 50%;
+	text-align: center;
+	//position: relative;
+	z-index: 1;
 
-    &:before, &:after {
-        speak: none;
-    }
+	&:before, &:after {
+		speak: none;
+	}
 
-    &:after {
-        content: '';
-        pointer-events: none;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        box-sizing: content-box;
-    }
+	&:after {
+		content: '';
+		pointer-events: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		box-sizing: content-box;
+	}
 }
 
 
 @mixin circle-border-in($offset: 4px, $color: white, $speed: 0.2s) {
-    @include circle-transition();
-    transition: background 0.2s, color 0.2s;
+	@include circle-transition();
+	transition: background 0.2s, color 0.2s;
 
-    &:after {
-        top: -$offset;
-        left: -$offset;
-        padding: $offset;
-        box-shadow: 0 0 0 4px $color;
-        opacity: 0;
-        transition: transform 0.2s, opacity 0.2s;
-        transform: scale(.8);
-    }
+	&:after {
+		top: -$offset;
+		left: -$offset;
+		padding: $offset;
+		box-shadow: 0 0 0 4px $color;
+		opacity: 0;
+		transition: transform 0.2s, opacity 0.2s;
+		transform: scale(.8);
+	}
 }

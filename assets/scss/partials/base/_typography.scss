@@ -1,23 +1,22 @@
-
 // =============================================================================
 //  Typography Settings
 // =============================================================================
 
 // For use with imported non-standard fonts
 %site-font {
-    font-family: $font-main;
-    font-weight: bold;
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	font-family: $font-main;
+	font-weight: bold;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-    // @include rem('font-size', $font-xxl);
-    // line-height: 1.2;
+	// @include rem('font-size', $font-xxl);
+	// line-height: 1.2;
 }
 
 h2 {
-    // @include rem('font-size', $font-xl);
-    // line-height: 1.3;
+	// @include rem('font-size', $font-xl);
+	// line-height: 1.3;
 }
