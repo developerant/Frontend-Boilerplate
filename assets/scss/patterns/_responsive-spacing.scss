@@ -8,18 +8,10 @@
 //  @requires default $spacing variable to be set
 // =============================================================================
 
-// =============================================================================
-//  <hr> Horizontal Rule / Thematic Break - Cross browser solution
-//
-//  @author github.com/developerant ;-) x
-//  @param {Hex} $color (#000000) - color of the hr
-//  @param {Px} $size (1px) - height of the hr
-// =============================================================================
-
 @mixin responsive($property: margin-bottom, $space: $spacing, $ratio: 2 ) {
-    #{$property}: $space / $ratio;
+	#{$property}: $space / $ratio;
 
-    @include breakpoint(medium) {
-        #{$property}: $space;
-    }
+	@include breakpoint(medium) {
+		#{$property}: $space;
+	}
 }

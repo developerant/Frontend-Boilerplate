@@ -7,10 +7,10 @@
 // =============================================================================
 
 @mixin hr($color: #000000, $size: 1px) {
-    margin-top: 0;
-    border: none 0;
-    border-bottom: solid $size $color;
-    color: $color;
-    background-color: $color;
-    clear: both;
+	margin-top: 0;
+	border: none 0;
+	border-bottom: solid $size $color;
+	color: $color;
+	background-color: $color;
+	clear: both;
 }
