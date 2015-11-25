@@ -6,16 +6,16 @@
 // =============================================================================
 
 @mixin responsive-image($extend: true) {
-  @if $extend {
-    @extend %responsive-image;
-  }
-  @else {
-    display: block;
-    width: 100%;
-    -ms-interpolation-mode: bicubic; // <= IE7
-  }
+	@if $extend {
+		@extend %responsive-image;
+	}
+	@else {
+		display: block;
+		width: 100%;
+		-ms-interpolation-mode: bicubic; // <= IE7
+	}
 }
 
 %responsive-image {
-  @include responsive-image($extend: false);
+	@include responsive-image($extend: false);
 }

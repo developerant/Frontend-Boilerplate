@@ -1,4 +1,3 @@
-
 // =============================================================================
 //  Checkboxes
 // =============================================================================
@@ -6,7 +5,6 @@
 // Mixin for css only custom select box - use as you wish
 
 @mixin checkbox($color, $font-size: 16px, $box-size: 29px) {
-
 	$spacing-top: $box-size * 0.25;
 	position: relative;
 

@@ -1,15 +1,17 @@
-/**
- * Provides an accessible way to hide text where background images are used on that element.
- *
- * @param {Bool} $extend (true) - extend or include this pattern
- *
- */
+// =============================================================================
+//  The image (or other) of the media box, shown on the left of content.
+//
+//  @param {Bool} $extend (true) - extend or include this pattern
+//  @param {px} $lb-width (900px) - width of the lightbox content
+//  @param {hex} $content-bg-color (#FFFFFF) - bg colo(u)r of the content
+// =============================================================================
 
 @mixin lightbox-modal($extend: true, $lb-width: 900px, $content-bg-color: #FFFFFF) {
     @if $extend {
+
         @extend %lightbox-modal;
-    }
-    @else {
+
+    } @else {
         position: fixed;
         top: 0;
         left: 0;

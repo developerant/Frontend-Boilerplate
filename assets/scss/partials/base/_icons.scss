@@ -77,9 +77,9 @@
 	@if $lineheight { line-height: 1; }
 	@if $rem { @include rem('font-size', $size); } @else { font-size: $size; }
 
-	@if $type == "plus"			{ content: 'a'; }
-	@if $type == "minus"		{ content: 'b'; }
-	@if $type == "facebook"		{ content: 'c'; }
+	@if $type == "plus"        { content: 'a'; }
+	@if $type == "minus"       { content: 'b'; }
+	@if $type == "facebook"    { content: 'c'; }
 }
 
 [class*="icon-"], [class^="icon-"] {

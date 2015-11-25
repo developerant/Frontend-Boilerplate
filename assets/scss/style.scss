@@ -61,3 +61,8 @@
 
 // Page specifics - for campaign / standalone design pages
 //@import 'partials/pages/*';
+
+
+bla {
+	@include rem('font-size', 20px);
+}

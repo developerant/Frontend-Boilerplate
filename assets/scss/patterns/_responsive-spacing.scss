@@ -1,6 +1,19 @@
+// =============================================================================
+//  Responsive Spacing - for spacing consistency throughout
+//
+//  @author github.com/developerant ;-) x
+//  @param {property} $property (margin-bottom)
+//  @param {Px} $space ($spacing)
+//  @param {Number} $ratio (2) - the ratio to divide by on mobile
+//  @requires default $spacing variable to be set
+// =============================================================================
 
 // =============================================================================
-//  Responsive Spacing - by github.com/developerant ;-) x
+//  <hr> Horizontal Rule / Thematic Break - Cross browser solution
+//
+//  @author github.com/developerant ;-) x
+//  @param {Hex} $color (#000000) - color of the hr
+//  @param {Px} $size (1px) - height of the hr
 // =============================================================================
 
 @mixin responsive($property: margin-bottom, $space: $spacing, $ratio: 2 ) {
