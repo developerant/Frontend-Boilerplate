@@ -9,8 +9,7 @@
 @mixin fluid-media-wrapper__media($extend: true) {
 	@if $extend {
 		@extend %fluid-media-wrapper__media;
-	}
-	@else {
+	} @else {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -41,7 +40,7 @@
 @mixin fluid-media-wrapper($width: 100%, $ratio: 16 9, $extend: false) {
 
 	@if length($ratio) < 2 or length($ratio) > 2 {
-		@warn "#{inspect($ratio)} must be a list with two values.";
+		@warn '#{inspect($ratio)} must be a list with two values.';
 	}
 
 	position: relative;
@@ -49,16 +48,14 @@
 
 	$unitless-width: $width / 100%;
 
-	padding-top: percentage( ( nth($ratio, 2) / nth($ratio, 1) ) * $unitless-width );
+	padding-top: percentage((nth($ratio, 2) / nth($ratio, 1)) * $unitless-width);
 
 	@if width != 100% {
 		margin-right: auto;
 		margin-left: auto;
 	}
 
-	embed,
-	iframe,
-	object {
+	embed, iframe, object {
 		@include fluid-media-wrapper__media($extend);
 	}
 }

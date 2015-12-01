@@ -9,7 +9,7 @@ $fix-mqs: false !default;
 //
 @mixin breakpoint($point) {
 	// Get the width of the query based on the passed $point variable
-	$width:map-get($breakpoints, $point);
+	$width: map-get($breakpoints, $point);
 
 	// If we're outputting for a fixed media query set...
 	@if $fix-mqs {
@@ -31,7 +31,7 @@ $fix-mqs: false !default;
 //
 @mixin max-breakpoint($point) {
 	// Get the width of the query based on the passed $point variable
-	$width:map-get($breakpoints, $point) - .0625;
+	$width: map-get($breakpoints, $point) - .0625;
 
 	// If we're outputting for a fixed media query set...
 	@if $fix-mqs {
@@ -88,7 +88,7 @@ $old-ie: false !default;
 
 // Custom breakpoint mixin, can pass a full media query rule here to output if needed
 // for use with max-width/multi-size queries. Pass true as second argument to output in the IE stylesheet
-@mixin custom-breakpoint($query, $output-for-ie:false) {
+@mixin custom-breakpoint($query, $output-for-ie: false) {
 	@if $old-ie and $output-for-ie {
 		@content;
 	} @else {

@@ -9,8 +9,8 @@
 @mixin media-box($extend: true) {
 	@if $extend {
 		@extend %media-box;
-	}
-	@else {
+
+	} @else {
 		@include clearfix($extend);
 	}
 }
@@ -28,8 +28,8 @@
 @mixin media-box__content($extend: true) {
 	@if $extend {
 		@extend %media-box__content;
-	}
-	@else {
+
+	} @else {
 		@include clearfix($extend);
 	}
 }
@@ -47,8 +47,8 @@
 @mixin media-box__aside-left($extend: true) {
 	@if $extend {
 		@extend %media-box__aside-left;
-	}
-	@else {
+
+	} @else {
 		display: block;
 		float: left;
 	}
@@ -67,8 +67,8 @@
 @mixin media-box__aside-right($extend: true) {
 	@if $extend {
 		@extend %media-box__aside-right;
-	}
-	@else {
+
+	} @else {
 		display: block;
 		float: right;
 	}

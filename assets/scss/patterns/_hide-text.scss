@@ -7,10 +7,11 @@
 // =============================================================================
 
 @mixin hide-text($extend: true) {
+
 	@if $extend {
 		@extend %hide-text;
-	}
-	@else {
+
+	} @else {
 		text-indent: 200%; // 200% allows for padding
 		white-space: nowrap;
 		overflow: hidden;

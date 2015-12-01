@@ -8,8 +8,8 @@
 @mixin float-list__item($extend: true) {
 	@if $extend {
 		@extend %float-list__item;
-	}
-	@else {
+
+	} @else {
 		float: left;
 	}
 }
@@ -33,8 +33,8 @@
 @mixin float-list($extend: true) {
 	@if $extend {
 		@extend %float-list;
-	}
-	@else {
+
+	} @else {
 		@include clearfix-with-overflow($extend);
 		@include unstyled-list($extend);
 

@@ -6,7 +6,7 @@
 //  @param {String} $size (5px) - sets the size of the arrow
 // =============================================================================
 
-@mixin arrow($direction: 'down', $color: #FFF, $size: 5px) {
+@mixin arrow($direction: 'down', $color: #fff, $size: 5px) {
 	display: inline-block;
 	height: 0;
 	width: 0;

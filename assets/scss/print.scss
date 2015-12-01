@@ -23,20 +23,14 @@
 //  Khoi Vinh: http://subtraction.com
 // =============================================================================
 
-html, 			body,
-div,			span,
-object, 		iframe,
-h1, h2, h3, h4, h5, h6,
-p, 				blockquote,
-pre, 			a,
-abbr, 			acronym,
-address, 		code,
-del, 			dfn,
-em, 			img,
-q, 				dl,
-dt, 			dd,
-ol, 			ul,
-li,
+$print-bg: #fff;
+$print-text-color: #333;
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, code, del, dfn, em, img, q, dl,
+dt, dd, ol, ul, li,
+
 /* Body -------------------------------		fieldset,
 form, 			label,
 legend, 		table,
@@ -55,15 +49,15 @@ tr, 			th, td {
 --------------------- */
 
 body {
-	width : 60%;
+	width: 60%;
 	/* http://www.cameronmoll.com/archives/000892.html */
-	width : expression(document.body.clientWidth < 640? "640px" : document.body.clientWidth > 120? "120em" : "auto");
-	margin : 0 auto;
-	padding : 2em 0;
-	background :  #fff;
-	font : 88% Georgia, Times, serif;
-	line-height : 1.4;
-	color : #333;
+	width: expression(document.body.clientWidth < 640? "640px" : document.body.clientWidth > 120? "120em" : "auto");
+	margin: 0 auto;
+	padding: 2em 0;
+	background: $print-bg;
+	font: 88% Georgia, Times, serif;
+	line-height: 1.4;
+	color: $print-text-color;
 }
 
 // =============================================================================
@@ -103,8 +97,11 @@ h5, h6 {
 	font-size: 1em;
 }
 
-h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
-	margin: 0;
+h1, h2, h3, h4, h5, h6 {
+
+	img {
+		margin: 0;
+	}
 }
 
 // =============================================================================
@@ -140,11 +137,11 @@ blockquote {
 	margin: 1.5em 1.5em 1.5em -1.5em;
 	padding-left: 1.5em;
 	border-left: 1px solid #666;
-	font: italic 1.2em "Times New Roman", Times, serif;
+	font: italic 1.2em 'Times New Roman', Times, serif;
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-	content: "";
+	content: '';
 }
 
 strong {
@@ -300,5 +297,5 @@ textarea {
 // =============================================================================
 
 img {
-	max-width:100%;
+	max-width: 100%;
 }

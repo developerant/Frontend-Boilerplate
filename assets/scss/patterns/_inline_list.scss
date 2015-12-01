@@ -5,10 +5,11 @@
 // =============================================================================
 
 @mixin inline-list__item($extend: true) {
+
 	@if $extend {
 		@extend %inline-list__item;
-	}
-	@else {
+
+	} @else {
 		display: inline-block;
 	}
 }
@@ -29,8 +30,8 @@
 @mixin inline-list($extend: true) {
 	@if $extend {
 		@extend %inline-list;
-	}
-	@else {
+
+	} @else {
 		@include unstyled-list($extend);
 
 		> * {

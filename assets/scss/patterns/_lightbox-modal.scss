@@ -6,7 +6,7 @@
 //  @param {hex} $content-bg-color (#FFFFFF) - bg colo(u)r of the content
 // =============================================================================
 
-@mixin lightbox-modal($extend: true, $lb-width: 900px, $content-bg-color: #FFFFFF) {
+@mixin lightbox-modal($extend: true, $lb-width: 900px, $content-bg-color: #fff, $shade: rgba(0, 0, 0, .5)) {
     @if $extend {
 
         @extend %lightbox-modal;
@@ -19,7 +19,7 @@
         height: 100%;
         text-align: left;
         z-index: 999;
-        transition: all 0.4s ease-in-out;
+        transition: all .4s ease-in-out;
 
         .lightbox__backdrop {
             content: '';
@@ -29,7 +29,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: $shade;
             z-index: 991;
         }
 
@@ -38,7 +38,6 @@
         }
 
         .lightbox__btn--close {
-            outline: none;
             border: 0;
             outline: none;
             z-index: 999;

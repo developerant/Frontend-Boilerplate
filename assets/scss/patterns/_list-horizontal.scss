@@ -8,12 +8,12 @@
 	margin: 0;
 	overflow: hidden;
 
-	> li{
+	> li {
 		display: block;
 		float: left;
 
-		&:last-child{
-			margin-right: 0px;
+		&:last-child {
+			margin-right: 0;
 		}
 	}
 }
