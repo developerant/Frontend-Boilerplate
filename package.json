@@ -26,6 +26,8 @@
     "yargs": "^3.18.0"
   },
   "devDependencies": {
-    "gulp-jshint": "^1.10.0"
+    "gulp-jshint": "^1.10.0",
+    "gulp-sass-lint": "*",
+    "gulp-size": "^1.2.0"
   }
 }
