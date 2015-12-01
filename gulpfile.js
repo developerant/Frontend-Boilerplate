@@ -29,16 +29,18 @@ var $           = require('gulp-load-plugins')(),
 gulp.task('styles', function() {
 
     gulp.src(basePaths.src + 'scss/**/*.scss')
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.sass({
       errLogToConsole: true,
       includePaths: ['scss']
     }))
-    .pipe($.plumber())
     .pipe($.autoprefixer({
         browsers: ['last 4 versions']
     }))
+    .pipe($.size({ gzip: true, showFiles: true }))
     .pipe(gulp.dest(basePaths.dest + '_css'))
     .pipe($.minifyCss({ keepSpecialComments: 0 }))
+    .pipe($.size({ gzip: true, showFiles: true }))
     .pipe($.rename({ extname: '.min.css' }))
     .pipe(gulp.dest(basePaths.dest + '_css'));
 
@@ -54,7 +56,8 @@ gulp.task('scripts', function() {
 
     if ( ! production ) {
         gulpTasks = gulpTasks.pipe($.jshint() )
-            .pipe($.jshint.reporter('default') );
+            .pipe($.jshint.reporter('default') )
+            .pipe($.size({ gzip: true, showFiles: true }));
     }
 
     return gulpTasks
